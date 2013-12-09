@@ -5,7 +5,7 @@ BINDIR=bin
 
 LIBS=-lm
 
-_OBJ = bisection.o newton.o
+_OBJ = bisection.o newton.o secant.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o: %.c
@@ -16,6 +16,9 @@ $(BINDIR)/bisection: $(OBJ)
 
 $(BINDIR)/newton: $(OBJ)
 	$(CC) -o $@ $(ODIR)/newton.o $(LIBS)
+
+$(BINDIR)/secant: $(OBJ)
+	$(CC) -o $@ $(ODIR)/secant.o $(LIBS)
 
 .PHONY: clean
 
@@ -28,4 +31,4 @@ $(BINDIR):
 $(ODIR):
 	mkdir -p $(ODIR)
 
-all: $(BINDIR) $(ODIR) $(BINDIR)/bisection $(BINDIR)/newton
+all: $(BINDIR) $(ODIR) $(BINDIR)/bisection $(BINDIR)/newton $(BINDIR)/secant
